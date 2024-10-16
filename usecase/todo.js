@@ -1,11 +1,18 @@
 module.exports = (todoModel) => {
-    async function getTodos() {
-        const todos = await todoModel.findAll();
+    async function getTodos(currentUser) {
+        console.log(currentUser)
+        const todos = await todoModel.findAll({
+            where: {user_id: currentUser.id},
+        });
+    
         return todos;
     }
 
-    async function getTodo(id) {
-        const todo = await todoModel.findByPk(id);
+    async function getTodo(id, currentUser) {
+        const todo = await todoModel.findOne({
+            where: {id: id, user_id: currentUser.id}
+        });
+    
         if (!todo) {
             throw "Todo Not Found";
         }
@@ -13,17 +20,20 @@ module.exports = (todoModel) => {
         return todo;
     }
 
-    async function createTodo(name, isDone) {
+    async function createTodo(name, isDone, currentUser) {
         const todo = await todoModel.create({
             name: name,
             isDone: isDone,
+            user_id: currentUser.id
         });
 
         return todo;
     }
 
-    async function updateTodo(id, name, isDone) {
-        const todo = await todoModel.findByPk(id);
+    async function updateTodo(id, name, isDone, currentUser) {
+        const todo = await todoModel.findOne({
+            where: {id: id, user_id: currentUser.id}
+        });
         if (!todo) {
             throw "Todo Not Found";
         }
@@ -35,8 +45,10 @@ module.exports = (todoModel) => {
         return todo;
     }
 
-    async function deleteTodo(id) {
-        const todo = await todoModel.findByPk(id);
+    async function deleteTodo(id, currentUser) {
+        const todo = await todoModel.findOne({
+            where: {id: id, user_id: currentUser.id}
+        });
         if (!todo) {
             throw "Todo Not Found";
         }

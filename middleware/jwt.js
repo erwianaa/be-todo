@@ -9,7 +9,7 @@ const jwtMiddleware = (req, res, next) => {
 
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
-            return res.status(403).json({ error: 'failed to authenticate token.' });
+            return res.status(403).json({ error: 'failed to authenticate token, wrong token or expired.' });
         }
         req.user = decoded;
         next();
