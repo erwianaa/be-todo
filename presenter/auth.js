@@ -7,6 +7,9 @@ module.exports = (http, userUseCase, jwtUseCase) => {
         if (!email || email === "") {
             return respond(res, hs.StatusCodes.BAD_REQUEST, "invalid email");
         }
+        if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+            return respond(res, hs.StatusCodes.BAD_REQUEST, "invalid email format");
+        }
         if (!password || password == "") {
             return respond(res, hs.StatusCodes.BAD_REQUEST, "invalid password");
         }

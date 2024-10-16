@@ -1,8 +1,7 @@
 module.exports = (todoModel) => {
     async function getTodos(currentUser) {
-        console.log(currentUser)
         const todos = await todoModel.findAll({
-            where: {user_id: currentUser.id},
+            where: {user_id: currentUser.user_id},
         });
     
         return todos;
@@ -10,7 +9,7 @@ module.exports = (todoModel) => {
 
     async function getTodo(id, currentUser) {
         const todo = await todoModel.findOne({
-            where: {id: id, user_id: currentUser.id}
+            where: {id: id, user_id: currentUser.user_id}
         });
     
         if (!todo) {
@@ -24,7 +23,7 @@ module.exports = (todoModel) => {
         const todo = await todoModel.create({
             name: name,
             isDone: isDone,
-            user_id: currentUser.id
+            user_id: currentUser.user_id
         });
 
         return todo;
@@ -32,7 +31,7 @@ module.exports = (todoModel) => {
 
     async function updateTodo(id, name, isDone, currentUser) {
         const todo = await todoModel.findOne({
-            where: {id: id, user_id: currentUser.id}
+            where: {id: id, user_id: currentUser.user_id}
         });
         if (!todo) {
             throw "Todo Not Found";
@@ -47,7 +46,7 @@ module.exports = (todoModel) => {
 
     async function deleteTodo(id, currentUser) {
         const todo = await todoModel.findOne({
-            where: {id: id, user_id: currentUser.id}
+            where: {id: id, user_id: currentUser.user_id}
         });
         if (!todo) {
             throw "Todo Not Found";
