@@ -55,11 +55,18 @@ module.exports = (todoModel) => {
         await todo.destroy();
     }
 
+    async function purgeTodos(currentUser) {
+        await todoModel.destroy({
+            where: {user_id: currentUser.user_id}
+        });
+    }
+
     return {
         getTodos,
         getTodo,
         createTodo,
         updateTodo,
-        deleteTodo
+        deleteTodo,
+        purgeTodos,
     };
 }

@@ -78,5 +78,15 @@ module.exports = (http, todoUseCase) => {
         } catch (error) {
             respond(res, hs.StatusCodes.NOT_FOUND, error);
         }
+    });
+
+    http.delete('/todos', jwt, async (req, res) => {
+        const currentUser = req.user;
+        try {
+            await todoUseCase.purgeTodos(currentUser);
+            respond(res, hs.StatusCodes.OK, '');
+        } catch (error) {
+            respond(res, hs.StatusCodes.NOT_FOUND, error);
+        }
     })
 }
