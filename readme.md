@@ -49,7 +49,7 @@
 ## End-point: GET Todo
 ### Method: GET
 >```
->localhost:3002/todos
+>localhost:3002/todos/1
 >```
 ### Body (**raw**)
 

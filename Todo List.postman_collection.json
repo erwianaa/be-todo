@@ -119,13 +119,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3002/todos",
+							"raw": "localhost:3002/todos/1",
 							"host": [
 								"localhost"
 							],
 							"port": "3002",
 							"path": [
-								"todos"
+								"todos",
+								"1"
 							]
 						}
 					},
