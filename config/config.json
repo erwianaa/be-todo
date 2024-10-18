@@ -4,7 +4,8 @@
       "password": null,
       "database": "todo_with_express",
       "host": "127.0.0.1",
-      "dialect": "mysql"
+      "dialect": "sqlite",
+      "storage": "./../todo_with_express.sqlite"
     },
     "test": {
       "use_env_variable": true
@@ -12,9 +13,10 @@
     "production": {
       "username": "root",
       "password": null,
-      "database": "database_production",
+      "database": "todo_with_express",
       "host": "127.0.0.1",
-      "dialect": "mysql",
-      "use_env_variable": true
+      "dialect": "sqlite",
+      "use_env_variable": true,
+      "storage": "./../todo_with_express.sqlite"
     }
 }
